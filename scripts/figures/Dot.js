@@ -1,6 +1,6 @@
 class Dot{
-  constructor(context, x, y, color){
-    this._context = context;
+  constructor(ctx, x, y, color){
+    this._ctx = ctx;
 
     if (!Number.isInteger(x)) throw new Error(`The x must be integer.`);
     if (!Number.isInteger(y)) throw new Error(`The y must be integer.`);
@@ -12,7 +12,7 @@ class Dot{
   }
 
   draw(){
-    this.context.fillRect(this.x,this.y,1,1);
+    this.ctx.fillRect(this.x,this.y,1,1);
   }
 
   move(x, y){
@@ -33,6 +33,6 @@ class Dot{
   set y(value) { throw new Error(`The y property cannot be written. ${value} was passed.`); }
   get color(){ return this._color; }
   set color(value) { throw new Error(`The color property cannot be written. ${value} was passed.`); }
-  get context(){ return this._color; }
-  set context(value) { throw new Error(`The context property cannot be written. ${value} was passed.`); }
+  get ctx(){ return this._ctx; }
+  set ctx(value) { throw new Error(`The ctx property cannot be written. ${value} was passed.`); }
 }
