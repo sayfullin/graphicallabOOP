@@ -1,33 +1,10 @@
-var drawingCanvas = document.getElementById('OOP');
-    if(drawingCanvas && drawingCanvas.getContext) {
-     var context = drawingCanvas.getContext('2d');
-     // Рисуем окружность 
-     context.strokeStyle = "#000";
-     context.fillStyle = "#fc0";
-     context.beginPath();
-     context.arc(100,100,50,0,Math.PI*2,true);
-     context.closePath();
-     context.stroke();
-     context.fill();
-     // Рисуем левый глаз 
-     context.fillStyle = "#fff";
-     context.beginPath();
-     context.arc(84,90,8,0,Math.PI*2,true);
-     context.closePath();
-     context.stroke();
-     context.fill();
-     // Рисуем правый глаз 
-     context.beginPath();
-     context.arc(116,90,8,0,Math.PI*2,true);
-     context.closePath();
-     context.stroke();
-     context.fill();
-     // Рисуем рот
-     context.beginPath();
-     context.moveTo(70,115);
-     context.quadraticCurveTo(100,130,130,115);
-     context.quadraticCurveTo(100,150,70,115); 
-     context.closePath();
-     context.stroke();
-     context.fill();
-    }
+$( document ).ready(function(){
+  var canvas = document.getElementById('canvas');
+  var ctx =  canvas.getContext('2d');
+
+  poligon = new Polygon(ctx, 120, 180, 50, 50, 15, 2, 'grey', 'black', 4);
+  poligon.draw();
+
+  poligon = new Star(ctx, 180, 120, 50, 50, 15, 2, 'green', 'black', 5);
+  poligon.draw();
+});
