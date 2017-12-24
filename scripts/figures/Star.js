@@ -1,33 +1,35 @@
 class Star extends Figure{
-  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, spikeCount){
+  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, spikeCount, outerRadius, innerRadius){
     super(ctx, x, y, width, height, angle, borderWidth, color, borderColor);
     this._spikeCount = spikeCount;
+    this._outerRadius = outerRadius;
+    this._innerRadius = innerRadius;
   }
 
   draw(){
     let rot = Math.PI / 2 * 3;
-    let x = this.x;
-    let y = this.y;
     let step = Math.PI / this.spikeCount;
-    let outerRadius = this._width;
-    let innerRadius = Math.ceil(this._width * 0.5);
-    this.ctx.rotate((Math.PI / 180) * this.angle);
+    let outerRadius = this._outerRadius;
+    let innerRadius = this._innerRadius;
+    let width = this._width;
+    let height = this._height;
 
-    this.ctx.strokeSyle = "#000";
+    this.ctx.translate(this.x, this.y);
+    this.ctx.rotate((Math.PI / 180) * (this.angle - 45));
     this.ctx.beginPath();
-    this.ctx.moveTo(this.x, this.y - outerRadius)
+    // this.ctx.moveTo(0, -outerRadius);
     for (let i = 0; i < this.spikeCount; i++) {
-        x = this.x + Math.cos(rot) * outerRadius;
-        y = this.y + Math.sin(rot) * outerRadius;
-        this.ctx.lineTo(x, y)
-        rot += step
+        let x = Math.cos(rot + width) * outerRadius;
+        let y = Math.sin(rot + height) * outerRadius;
+        this.ctx.lineTo(x, y);
+        rot += step;
 
-        x = this.x + Math.cos(rot) * innerRadius;
-        y = this.y + Math.sin(rot) * innerRadius;
-        this.ctx.lineTo(x, y)
+        x = Math.cos(rot + width) * innerRadius;
+        y = Math.sin(rot + height) * innerRadius;
+        this.ctx.lineTo(x, y);
         rot += step
     }
-    this.ctx.lineTo(this.x, this.y - outerRadius)
+    // this.ctx.lineTo(0, -outerRadius);
     this.ctx.closePath();
     if (this.color != 'none') {
         this.ctx.fillStyle = this.color;
@@ -38,7 +40,8 @@ class Star extends Figure{
         this.ctx.strokeStyle = this.borderColor;
         this.ctx.stroke();
     }
-    this.ctx.rotate(-(Math.PI / 180) * this.angle);
+    this.ctx.rotate(-(Math.PI / 180) * (this.angle - 45));
+    this.ctx.translate(-this.x, -this.y);
   }
 
   changeSideCount(spikeCount){
