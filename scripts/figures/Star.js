@@ -11,6 +11,7 @@ class Star extends Figure{
     let step = Math.PI / this.spikeCount;
     let outerRadius = this._width;
     let innerRadius = Math.ceil(this._width * 0.5);
+    this.ctx.rotate((Math.PI / 180) * this.angle);
 
     this.ctx.strokeSyle = "#000";
     this.ctx.beginPath();
@@ -28,11 +29,16 @@ class Star extends Figure{
     }
     this.ctx.lineTo(this.x, this.y - outerRadius)
     this.ctx.closePath();
-    this.ctx.lineWidth=5;
-    this.ctx.strokeStyle = this.borderColor;
-    this.ctx.stroke();
-    this.ctx.fillStyle= this.color;
-    this.ctx.fill();
+    if (this.color != 'none') {
+        this.ctx.fillStyle = this.color;
+        this.ctx.fill();
+    }
+    if (this.borderColor != 'none') {
+        this.ctx.lineWidth = this.borderWidth;
+        this.ctx.strokeStyle = this.borderColor;
+        this.ctx.stroke();
+    }
+    this.ctx.rotate(-(Math.PI / 180) * this.angle);
   }
 
   changeSideCount(spikeCount){
