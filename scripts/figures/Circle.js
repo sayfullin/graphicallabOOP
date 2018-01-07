@@ -6,4 +6,14 @@ class Circle extends Figure{
   draw(){
     console.log('drawing Circle');
   }
+
+  getTitle(){
+    if (this.width == this.height)
+      var name = 'Круг';
+    else
+      var name = 'Овал';
+
+    return name + ' ' + this._getCoords();
+  }
+
 }

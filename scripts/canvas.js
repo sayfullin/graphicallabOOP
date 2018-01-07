@@ -6,6 +6,22 @@ class Canvas{
       this._items = [];
   }
 
+  addPolygon(x, y, options){
+    let polygon =  new Polygon(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.sideCount);
+    this.addItem(polygon);
+    this.draw();
+  }
+  addStar(x, y, options){
+    let polygon =  new Star(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.spikeCount);
+    this.addItem(polygon);
+    this.draw();
+  }
+  addCircle(x, y, options){
+    let polygon =  new Circle(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor);
+    this.addItem(polygon);
+    this.draw();
+  }
+
   addItem(figure){
     if (figure instanceof Figure){
       this._items.push(figure);

@@ -15,6 +15,10 @@ class Dot{
     this.ctx.fillRect(this.x,this.y,1,1);
   }
 
+  getTitle(){
+    return 'Точка (' + this.x + ', ' + this.y + ')'
+  }
+
   move(x, y){
     if (!Number.isInteger(x)) throw new Error(`The x must be integer.`);
     if (!Number.isInteger(y)) throw new Error(`The y must be integer.`);

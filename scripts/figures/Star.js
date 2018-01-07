@@ -35,6 +35,27 @@ class Star extends Figure{
     this.ctx.fill();
   }
 
+  getTitle(){
+    switch (this.spikeCount) {
+      case 4:
+        name = 'Четырехконечная звезда';
+        break;
+      case 5:
+        name = 'Пятиконечная звезда';
+        break;
+      case 6:
+        name = 'Шестиконечная звезда';
+        break;
+      case 7:
+        name = 'Семиконечная звезда';
+        break;
+      default:
+        name = 'Звезда: ' + this.spikeCount;
+      }
+
+    return name + ' ' + this._getCoords();
+  }
+
   changeSideCount(spikeCount){
     if (!Number.isInteger(spikeCount)) throw new Error(`The sideCount must be integer.`);
     this._spikeCount = spikeCount;

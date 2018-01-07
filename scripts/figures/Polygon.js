@@ -19,15 +19,40 @@ class Polygon extends Figure{
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
     }
-    if (this.borderColor != 'none') {
+    if (this.borderColor != 'none' && this.borderWidth>0) {
         this.ctx.lineWidth = this.borderWidth;
         this.ctx.strokeStyle = this.borderColor;
         this.ctx.stroke();
     }
     this.ctx.rotate(-(Math.PI / 180) * this.angle);
     this.ctx.translate(-this.x, -this.y);
+  }
 
+  getTitle(){
+    if (this.sideCount == 4 && this.width == this.height)
+      var name = 'Квадрат';
+    else
+    switch (this.sideCount) {
+      case 3:
+        name = 'Треугольник';
+        break;
+      case 4:
+        name = 'Прямоугольник';
+        break;
+      case 5:
+        name = 'Пятиугольник';
+        break;
+      case 6:
+        name = 'Шестиугольник';
+        break;
+      case 7:
+        name = 'Семиугольник';
+        break;
+      default:
+        name = 'Многоугольник: ' + this.sideCount;
+      }
 
+    return name + ' ' + this._getCoords();
   }
 
   changeSideCount(sideCount){

@@ -19,6 +19,14 @@ class Figure extends Dot{
      throw new Error('You have to implement the method draw!');
   }
 
+  getTitle(){
+      return 'Фигура ' + this._getCoords();
+  }
+
+  _getCoords(){
+    return '(' + this.x + ', ' + this.y + '; ' + (this.x+this.width) + ', ' + (this.y+this.height) + ')'
+  }
+
   rotate(angle){
     if (!Number.isInteger(angle)) throw new Error(`The angle must be integer.`);
     this._angle = angle;
