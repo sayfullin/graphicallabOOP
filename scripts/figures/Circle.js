@@ -3,6 +3,10 @@ class Circle extends Figure{
     super(ctx, x, y, width, height, angle, borderWidth, color, borderColor);
   }
 
+  _getFigureName(){
+    return "Круг"
+  }
+
   draw(){
     console.log('drawing Circle');
   }

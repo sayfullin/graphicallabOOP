@@ -4,6 +4,10 @@ class Star extends Figure{
     this._spikeCount = spikeCount;
   }
 
+  _getFigureName(){
+    return "Звезда " + this.spikeCount;
+  }
+
   draw(){
     let rot = Math.PI / 2 * 3;
     let x = this.x;

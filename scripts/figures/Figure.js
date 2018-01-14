@@ -10,13 +10,20 @@ class Figure extends Dot{
 
     this._width = width;
     this._height = height;
-    this._angle = angle;
+    this._angle = angle+45;
     this._borderColor = borderColor;
     this._borderWidth = borderWidth;
   }
 
   draw(){
      throw new Error('You have to implement the method draw!');
+  }
+
+  _getFigureName(){
+    return "Фигура"
+  }
+  _getPosition(){
+    return "("+this.x+","+this.y+"; "+(this.x+this.width)+","+(this.y+this.height)+")"
   }
 
   rotate(angle){

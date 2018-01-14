@@ -8,12 +8,36 @@ $( document ).ready(function(){
   var canvas = document.getElementById('canvas');
   var ctx =  canvas.getContext('2d');
 
-  canvas.width = canvas.parentElement.clientWidth
-  canvas.height = canvas.parentElement.clientHeight;
+  canvas.width = canvas.parentElement.clientWidth - 10;
+  canvas.height = canvas.parentElement.clientHeight - 1;
 
-  poligon = new Polygon(ctx, 120, 180, 50, 50, 15, 2, 'grey', 'black', 4);
-  poligon.draw();
+  interfac = new Interface(ctx, {
+    'canvas': $('#canvas'),
+    'color': $('select[name="colorpicker_color"]'),
+    'borderColor': $('select[name="colorpicker_bordercolor"]'),
+    'borderWidth':$('#borderWidth'),
+    'width': $('#width'),
+    'height': $('#height'),
+    'angle': $('#angle'),
+    'sideCount': $('#sideCount'),
+    'spikeCount': $('#spikeCount'),
+    'polygon': $('#polygon'),
+    'star': $('#star'),
+    'circle': $('#circle'),
+    'edit': $('#edit'),
+    'delete_figure': $('#delete_figure'),
+    'figuresList': $('#figures_list')
+  });
 
-  poligon = new Star(ctx, 180, 120, 50, 50, 15, 2, 'green', 'black', 5);
-  poligon.draw();
+
+
 });
+
+
+/*
+  poligon = new Polygon(ctx, 120, 180, 50, 50, 0, 2, 'grey', 'black', 4);
+  poligon.draw();
+
+  poligon = new Star(ctx, 180, 120, 50, 50, 0, 2, 'green', 'black', 5);
+  poligon.draw();
+*/

@@ -4,6 +4,10 @@ class Polygon extends Figure{
     if (!Number.isInteger(sideCount)) throw new Error(`The sideCount must be integer.`);
     this._sideCount = sideCount;
   }
+  
+  _getFigureName(){
+    return "Многоугольник " + this.sideCount;
+  }
 
   draw(){
     this.ctx.translate(this.x, this.y);

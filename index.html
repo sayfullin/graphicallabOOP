@@ -23,11 +23,11 @@
             <div id='new_element_choose'>
               <div class="tool_choose-item"><span>Сохранить</span></div>
               <div class="tool_choose-item"><span>Загрузить</span></div>
-              <div class="tool_choose-item"><span>Редактирование</span></div>
-              <div class="tool_choose-item"><span>Многоугольник</span></div>
-              <div class="tool_choose-item"><span>Звезда</span></div>
-              <div class="tool_choose-item"><span>Круг</span></div>
-              <div class="tool_choose-item"><span>Удалить фигуру</span></div>
+              <div class="tool_choose-item" id='edit'><span>Редактирование</span></div>
+              <div class="tool_choose-item" id='polygon'><span>Многоугольник</span></div>
+              <div class="tool_choose-item" id='star'><span>Звезда</span></div>
+              <div class="tool_choose-item" id='circle'><span>Круг</span></div>
+              <div class="tool_choose-item" id='delete_figure'><span>Удалить фигуру</span></div>
             </div>
           </div>
 
@@ -77,54 +77,56 @@
               <div class="figure_attribute">
                 <span>Ширина границ</span>
                 <div class="figure_attribute-value range_div">
-                  <input type="range" value="2" min="0" max="5" step="1">
+                  <input id='borderWidth' type="range" value="2" min="0" max="5" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
                 <span>Ширина</span>
                 <div class="figure_attribute-value range_div">
-                  <input type="range" value="2" min="5" max="20" step="1">
+                  <input id='width' type="range" value="2" min="5" max="20" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
                 <span>Высота</span>
                 <div class="figure_attribute-value range_div">
-                  <input type="range" value="2" min="5" max="20" step="1">
+                  <input id='height' type="range" value="2" min="5" max="20" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
                 <span>Угол наклона</span>
                 <div class="figure_attribute-value range_div">
-                  <input type="range" value="0" min="0" max="359" step="1">
+                  <input id='angle' type="range" value="0" min="0" max="359" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
                 <span>Количество сторон</span>
                 <div class="figure_attribute-value range_div">
-                  <input type="range" value="5" min="3" max="20" step="1">
+                  <input id='sideCount' type="range" value="5" min="3" max="20" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
                 <span>Количество концов</span>
                 <div class="figure_attribute-value range_div">
-                  <input type="range" value="5" min="3" max="20" step="1">
+                  <input id='spikeCount' type="range" value="5" min="3" max="20" step="1">
                 </div>
               </div>
             </div>
           </div>
           <div id="objects_list" class="">
             <h4>Фигиры</h4>
-            <div class='radiobox-div'>
-								<label class='radiobox'><input type="radio" name="selectedIdEneble"><span class="item">Круг #1</span></label>
-  					</div>
-            <div class='radiobox-div'>
-								<label class='radiobox'><input type="radio" name="selectedIdEneble"><span class="item">Многоугольник: 3 #1</span></label>
-						</div>
-            <div class='radiobox-div'>
-  							<label class='radiobox'><input type="radio" name="selectedIdEneble"><span class="item">Многоугольник: 5 #2</span></label>
-  					</div>
+            <div id='figures_list'>
+              <div class='radiobox-div'>
+  								<label class='radiobox'><input type="radio" name="selectedIdEneble"><span class="item">Круг #1</span></label>
+    					</div>
+              <div class='radiobox-div'>
+  								<label class='radiobox'><input type="radio" name="selectedIdEneble"><span class="item">Многоугольник: 3 #1</span></label>
+  						</div>
+              <div class='radiobox-div'>
+    							<label class='radiobox'><input type="radio" name="selectedIdEneble"><span class="item">Многоугольник: 5 #2</span></label>
+    					</div>
             </div>
           </div>
+        </div>
         <div id='canvas_div'><canvas id='canvas'></canvas></div>
     </div>
   </body>
@@ -135,5 +137,8 @@
 <script src="scripts/figures/Polygon.js"></script>
 <script src="scripts/figures/Star.js"></script>
 <script src="scripts/figures/Circle.js"></script>
+<script src="scripts/options.js"></script>
+<script src="scripts/canvas.js"></script>
+<script src="scripts/interface.js"></script>
 
 <script src="main.js"></script>
