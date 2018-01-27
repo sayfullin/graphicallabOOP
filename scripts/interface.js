@@ -47,42 +47,42 @@ class Interface{
       let that = this;
       domElements.color.on('change', function(){
         that._options.color = $(this).val();
-        if (that._currentOperation == EDIT){
+        if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().changeColor(that._options.color);
           that._canvas.draw();
         }
       });
       domElements.borderColor.on('change', function(){
         that._options.borderColor =  $(this).val();
-        if (that._currentOperation == EDIT){
+        if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().changeBorderColor(that._options.borderColor);
           that._canvas.draw();
         }
       });
       domElements.borderWidth.on('change', function(){
         that._options.borderWidth = Number.parseInt($(this).val());
-        if (that._currentOperation == EDIT){
+        if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().changeBorderWidth(that._options.borderWidth);
           that._canvas.draw();
         }
       });
       domElements.width.on('change', function(){
         that._options.width = Number.parseInt($(this).val());
-        if (that._currentOperation == EDIT){
+        if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().resize(that._options.width, that._options.width);
           that._canvas.draw();
         }
       });
       domElements.height.on('change', function(){
         that._options.height = Number.parseInt($(this).val());
-        if (that._currentOperation == EDIT){
+        if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().resize(that._options.width, that._options.width);
           that._canvas.draw();
         }
       });
       domElements.angle.on('change', function(){
         that._options.angle = Number.parseInt($(this).val());
-        if (that._currentOperation == EDIT){
+        if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().rotate(that._options.angle);
           that._canvas.draw();
         }
@@ -122,17 +122,22 @@ class Interface{
               }
           }
           that._canvas.draw();
-          that.refreshFiguresList(domElements.figuresList);
+          that.refreshFiguresList();
       })
 
       domElements.figuresList.on('click', '.radiobox-div', function(event){
         that._currentFigure = Number.parseInt(this.getAttribute('attr-index'));
         that._currentOperation = EDIT;
+        that.selectFigure();
       })
 
       domElements.edit.on('click', function(){
         that._currentOperation = EDIT;
-        that._currentFigure = null;
+        if (that._canvas.items.length > 0)
+          that._currentFigure = that._canvas.items.length-1;
+        else
+          that._currentFigure = null;
+        that.selectFigure();
       });
       domElements.deleteFigure.on('click', function(){
         if (that._currentFigure != null){
@@ -143,21 +148,27 @@ class Interface{
           }else if (that._currentFigure == that._canvas.items.length){
             that._currentFigure = that._canvas.items.length-1;
           }
-          that.refreshFiguresList(domElements.figuresList);
+          that.refreshFiguresList();
         }
         that._currentOperation = EDIT;
       });
       domElements.polygon.on('click', function(){
         that._currentOperation = ADD_POLYGON;
         that._currentFigure = null;
+        that._domElements.spikeCount.hide();
+        that._domElements.sideCount.show();
       });
       domElements.star.on('click', function(){
         that._currentOperation = ADD_STAR;
         that._currentFigure = null;
+        that._domElements.spikeCount.show();
+        that._domElements.sideCount.hide();
       });
       domElements.circle.on('click', function(){
         that._currentOperation = ADD_CIRCLE;
         that._currentFigure = null;
+        that._domElements.spikeCount.hide();
+        that._domElements.sideCount.hide();
       });
 
 
@@ -166,21 +177,42 @@ class Interface{
   _getCurrentFigure(){
     if (this._currentFigure != null)
       return this._canvas.items[this._currentFigure];
-    else if(this._canvas.items.length > 0)
-        return this._canvas.items[this._canvas.items.length-1];
-      else
-        return null;
+    else
+      return null;
   }
 
-  refreshFiguresList(figuresList){
+  selectFigure(){
+    if (this._currentFigure != null){
+      $('.radiobox-div[attr-index=' + this._currentFigure + '] .radiobox input').prop("checked", true);
+      let figure = this._getCurrentFigure();
+      this._domElements.width.val(figure.width);
+      this._domElements.height.val(figure.height);
+      this._domElements.angle.val(figure.angle);
+      this._domElements.borderWidth.val(figure.borderWidth);
+      this._domElements.color.simplecolorpicker('selectColor',figure.color);
+      if (figure instanceof Star){
+        this._domElements.spikeCount.val(figure.spikeCount);
+        this._domElements.spikeCount.show();
+      }else
+        this._domElements.spikeCount.hide();
+
+      if (figure instanceof Polygon){
+        this._domElements.sideCount.val(figure.sideCount);
+        this._domElements.sideCount.show();
+      }else
+        this._domElements.sideCount.hide();
+    }
+  }
+
+  refreshFiguresList(){
+    let figuresList = this._domElements.figuresList;
     figuresList.html("");
     for (var i = 0; i < this._canvas.items.length; i++) {
       name = (i+1) + '. ' + this._canvas.items[i].getTitle();
       let listItem = "<div class='radiobox-div' attr-index="+i+"><label class='radiobox'><input type='radio' name='selectedIdEneble'><span class='item'>"+name+"</span></label></div>"
       figuresList.append(listItem);
     }
-    if (this._currentFigure != null)
-      $('.radiobox-div[attr-index=' + this._currentFigure + '] .radiobox input').prop("checked", true)
+    this.selectFigure();
   }
 
   get ctx(){ return this._ctx; }
