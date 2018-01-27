@@ -5,13 +5,17 @@ $( document ).ready(function(){
   $('select[name="colorpicker_bordercolor"]').simplecolorpicker('selectColor', '#ffb878');
 
 
-  var canvas = document.getElementById('canvas');
-  var ctx =  canvas.getContext('2d');
-
+  let canvas = document.getElementById('canvas');
+  let ctx =  canvas.getContext('2d');
   canvas.width = canvas.parentElement.clientWidth - 10;
   canvas.height = canvas.parentElement.clientHeight - 1;
 
-  interfac = new Interface(ctx, {
+  let pointPathCanvas= document.getElementById('point_path_canvas_div');
+  let pointPathCanvasCtx =  canvas.getContext('2d');
+  pointPathCanvasCtx.width = canvas.width;
+  pointPathCanvasCtx.height = canvas.height;
+
+  interfac = new Interface(ctx, pointPathCanvasCtx, {
     'canvas': $('#canvas'),
     'color': $('select[name="colorpicker_color"]'),
     'borderColor': $('select[name="colorpicker_bordercolor"]'),

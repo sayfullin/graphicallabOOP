@@ -1,7 +1,8 @@
 class Canvas{
-  constructor(ctx){
+  constructor(ctx, pointPathCanvasCtx){
       if (!ctx) throw new Error(`The ctx must implement.`);
       this._ctx = ctx;
+      this._pointPathCanvasCtx = pointPathCanvasCtx;
 
       this._items = [];
   }
@@ -28,14 +29,23 @@ class Canvas{
   }
 
   deleteItem(index){
-    this._items.splice(index, 1);
+    this.items.splice(index, 1);
   }
 
   draw(){
     this._clear();
-    this._items.forEach(function(figure) {
+    this.items.forEach(function(figure) {
         figure.draw();
     });
+  }
+
+  getFigureIndexByCoord(x, y){
+      for (var i = this.items.length-1; i > -1 ; i--) {
+        this.items[i].draw(this._pointPathCanvasCtx);
+        if (this._pointPathCanvasCtx.isPointInPath(x, y))
+          return i
+      }
+      return null
   }
 
   _clear(){

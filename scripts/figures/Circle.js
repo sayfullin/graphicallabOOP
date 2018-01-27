@@ -7,7 +7,8 @@ class Circle extends Figure{
     return "Круг"
   }
 
-  draw(){
+  draw(ctx){
+    if (!ctx) ctx = this.ctx;
     console.log('drawing Circle');
   }
 }

@@ -29,6 +29,10 @@ canvas {
   display: block;
 }
 
+#point_path_canvas_div{
+  display: none;
+}
+
 #left_toolbar > div{
   margin: 5px;
 }

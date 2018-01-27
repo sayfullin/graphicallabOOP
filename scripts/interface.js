@@ -5,11 +5,13 @@ const ADD_POLYGON = 22;
 const ADD_CIRCLE = 23;
 
 class Interface{
-  constructor(ctx, domElements){
+  constructor(ctx, pointPathCanvasCtx, domElements){
       if (!ctx) throw new Error(`The ctx must implement.`);
       this._ctx = ctx;
 
-      this._canvas = new Canvas(this.ctx);
+      if (!pointPathCanvasCtx) throw new Error(`The pointPathCanvasCtx must implement.`);
+
+      this._canvas = new Canvas(this.ctx, pointPathCanvasCtx);
       this._currentFigure = null;
       this._currentOperation = null;
 
@@ -117,9 +119,7 @@ class Interface{
               that._canvas.addCircle(xPos, yPos, that._options);
               break;
             case EDIT:
-              if (that._getCurrentFigure()){
-                that._getCurrentFigure().move(xPos, yPos);
-              }
+              that._currentFigure = that._canvas.getFigureIndexByCoord(xPos, yPos);
           }
           that._canvas.draw();
           that.refreshFiguresList();

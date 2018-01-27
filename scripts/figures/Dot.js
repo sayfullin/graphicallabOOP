@@ -11,8 +11,9 @@ class Dot{
     this._color = color;
   }
 
-  draw(){
-    this.ctx.fillRect(this.x,this.y,1,1);
+  draw(ctx){
+    if (!ctx) ctx = this.ctx;
+    ctx.fillRect(this.x,this.y,1,1);
   }
 
   getTitle(){

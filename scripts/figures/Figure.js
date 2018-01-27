@@ -15,8 +15,9 @@ class Figure extends Dot{
     this._borderWidth = borderWidth;
   }
 
-  draw(){
-     throw new Error('You have to implement the method draw!');
+  draw(ctx){
+    if (!ctx) ctx = this.ctx;
+    throw new Error('You have to implement the method draw!');
   }
 
   _getFigureName(){
