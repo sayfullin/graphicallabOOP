@@ -32,14 +32,19 @@ class Star extends Figure{
     }
     this.ctx.lineTo(this.x, this.y - outerRadius)
     this.ctx.closePath();
-    this.ctx.lineWidth=5;
-    this.ctx.strokeStyle = this.borderColor;
+    if (this.borderWidth != 0){
+      this.ctx.lineWidth=this.borderWidth;
+      this.ctx.strokeStyle = this.borderColor;
+    }else {
+      this.ctx.lineWidth=1;
+      this.ctx.strokeStyle = this.color;
+    }
     this.ctx.stroke();
     this.ctx.fillStyle= this.color;
     this.ctx.fill();
   }
 
-  changeSideCount(spikeCount){
+  changeSpikeCount(spikeCount){
     if (!Number.isInteger(spikeCount)) throw new Error(`The sideCount must be integer.`);
     this._spikeCount = spikeCount;
   }

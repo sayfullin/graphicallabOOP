@@ -9,17 +9,14 @@ class Canvas{
   addPolygon(x, y, options){
     let polygon =  new Polygon(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.sideCount);
     this.addItem(polygon);
-    this.draw();
   }
   addStar(x, y, options){
     let polygon =  new Star(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.spikeCount);
     this.addItem(polygon);
-    this.draw();
   }
   addCircle(x, y, options){
     let polygon =  new Circle(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor);
     this.addItem(polygon);
-    this.draw();
   }
 
   addItem(figure){
@@ -42,7 +39,7 @@ class Canvas{
   }
 
   _clear(){
-    this.ctx.clearRect(0, 0, this.ctx.canvas.height, this.ctx.canvas.width)
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
   }
 
   get ctx(){ return this._ctx; }

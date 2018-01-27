@@ -25,7 +25,7 @@ $( document ).ready(function(){
     'star': $('#star'),
     'circle': $('#circle'),
     'edit': $('#edit'),
-    'delete_figure': $('#delete_figure'),
+    'deleteFigure': $('#delete_figure'),
     'figuresList': $('#figures_list')
   });
 

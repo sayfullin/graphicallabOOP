@@ -4,7 +4,7 @@ class Polygon extends Figure{
     if (!Number.isInteger(sideCount)) throw new Error(`The sideCount must be integer.`);
     this._sideCount = sideCount;
   }
-  
+
   _getFigureName(){
     return "Многоугольник " + this.sideCount;
   }
@@ -19,11 +19,11 @@ class Polygon extends Figure{
         this.ctx.lineTo(this.width * Math.cos(a * i), this.height * Math.sin(a * i));
     }
     this.ctx.closePath();
-    if (this.color != 'none') {
+    if (this.color != undefined) {
         this.ctx.fillStyle = this.color;
         this.ctx.fill();
     }
-    if (this.borderColor != 'none') {
+    if (this.borderColor != undefined && this.borderWidth){
         this.ctx.lineWidth = this.borderWidth;
         this.ctx.strokeStyle = this.borderColor;
         this.ctx.stroke();
@@ -35,7 +35,7 @@ class Polygon extends Figure{
   }
 
   changeSideCount(sideCount){
-    if (!Number.isInteger(angsideCountle)) throw new Error(`The sideCount must be integer.`);
+    if (!Number.isInteger(sideCount)) throw new Error(`The sideCount must be integer.`);
     this._sideCount = sideCount;
   }
 

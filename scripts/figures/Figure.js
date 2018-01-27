@@ -28,7 +28,7 @@ class Figure extends Dot{
 
   rotate(angle){
     if (!Number.isInteger(angle)) throw new Error(`The angle must be integer.`);
-    this._angle = angle;
+    this._angle = angle+45;
   }
 
   resize(width, height){
@@ -43,8 +43,8 @@ class Figure extends Dot{
     this._borderColor = borderColor;
   }
 
-  changeborderWidth(borderWidth){
-    if (!Number.isInteger(borderwidth)) throw new Error(`The angle must be integer.`);
+  changeBorderWidth(borderWidth){
+    if (!Number.isInteger(borderWidth)) throw new Error(`The angle must be integer.`);
       this._borderWidth = borderWidth;
   }
 

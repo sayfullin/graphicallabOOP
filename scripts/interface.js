@@ -30,7 +30,7 @@ class Interface{
       if (!domElements.star) throw new Error(`The domElements.star must implement.`);
       if (!domElements.circle) throw new Error(`The domElements.circle must implement.`);
       if (!domElements.edit) throw new Error(`The domElements.edit must implement.`);
-      if (!domElements.delete_figure) throw new Error(`The domElements.delete_figure must implement.`);
+      if (!domElements.deleteFigure) throw new Error(`The domElements.delete_figure must implement.`);
 
       this._domElements = domElements;
 
@@ -46,33 +46,65 @@ class Interface{
 
       let that = this;
       domElements.color.on('change', function(){
-        that._options.color =  $(this).val();
+        that._options.color = $(this).val();
+        if (that._currentOperation == EDIT){
+          that._getCurrentFigure().changeColor(that._options.color);
+          that._canvas.draw();
+        }
       });
       domElements.borderColor.on('change', function(){
         that._options.borderColor =  $(this).val();
+        if (that._currentOperation == EDIT){
+          that._getCurrentFigure().changeBorderColor(that._options.borderColor);
+          that._canvas.draw();
+        }
       });
       domElements.borderWidth.on('change', function(){
         that._options.borderWidth = Number.parseInt($(this).val());
+        if (that._currentOperation == EDIT){
+          that._getCurrentFigure().changeBorderWidth(that._options.borderWidth);
+          that._canvas.draw();
+        }
       });
       domElements.width.on('change', function(){
         that._options.width = Number.parseInt($(this).val());
+        if (that._currentOperation == EDIT){
+          that._getCurrentFigure().resize(that._options.width, that._options.width);
+          that._canvas.draw();
+        }
       });
       domElements.height.on('change', function(){
         that._options.height = Number.parseInt($(this).val());
+        if (that._currentOperation == EDIT){
+          that._getCurrentFigure().resize(that._options.width, that._options.width);
+          that._canvas.draw();
+        }
       });
       domElements.angle.on('change', function(){
         that._options.angle = Number.parseInt($(this).val());
+        if (that._currentOperation == EDIT){
+          that._getCurrentFigure().rotate(that._options.angle);
+          that._canvas.draw();
+        }
       });
       domElements.sideCount.on('change', function(){
         that._options.sideCount = Number.parseInt($(this).val());
+        if (that._currentOperation == EDIT && (that._getCurrentFigure() instanceof Polygon)){
+          that._getCurrentFigure().changeSideCount(that._options.sideCount);
+          that._canvas.draw();
+        }
       });
       domElements.spikeCount.on('change', function(){
         that._options.spikeCount = Number.parseInt($(this).val());
+        if (that._currentOperation == EDIT && (that._getCurrentFigure() instanceof Star)){
+          that._getCurrentFigure().changeSpikeCount(that._options.spikeCount);
+          that._canvas.draw();
+        }
       });
 
       domElements.canvas.on('click', function(event){
-          let xPos = event.pageX - $(this).offset().left;
-          let yPos = event.pageY - $(this).offset().top;
+          let xPos = Math.ceil(event.pageX - $(this).offset().left);
+          let yPos = Math.ceil(event.pageY - $(this).offset().top);
 
           switch (that._currentOperation) {
             case ADD_POLYGON:
@@ -84,36 +116,61 @@ class Interface{
             case ADD_CIRCLE:
               that._canvas.addCircle(xPos, yPos, that._options);
               break;
+            case EDIT:
+              if (that._getCurrentFigure()){
+                that._getCurrentFigure().move(xPos, yPos);
+              }
           }
+          that._canvas.draw();
           that.refreshFiguresList(domElements.figuresList);
+      })
+
+      domElements.figuresList.on('click', '.radiobox-div', function(event){
+        that._currentFigure = Number.parseInt(this.getAttribute('attr-index'));
+        that._currentOperation = EDIT;
       })
 
       domElements.edit.on('click', function(){
         that._currentOperation = EDIT;
+        that._currentFigure = null;
       });
-      domElements.delete_figure.on('click', function(){
-        that._currentOperation = DELETE_FIGURE;
+      domElements.deleteFigure.on('click', function(){
+        that._currentOperation = EDIT;
       });
       domElements.polygon.on('click', function(){
         that._currentOperation = ADD_POLYGON;
+        that._currentFigure = null;
       });
       domElements.star.on('click', function(){
         that._currentOperation = ADD_STAR;
+        that._currentFigure = null;
       });
       domElements.circle.on('click', function(){
         that._currentOperation = ADD_CIRCLE;
+        that._currentFigure = null;
       });
 
 
   }
 
+  _getCurrentFigure(){
+    if (this._currentFigure != null)
+      return this._canvas.items[this._currentFigure];
+    else if(this._canvas.items.length > 0)
+        return this._canvas.items[this._canvas.items.length-1];
+      else
+        return null;
+  }
+
   refreshFiguresList(figuresList){
     figuresList.html("");
     for (var i = 0; i < this._canvas.items.length; i++) {
-      name = i + '. ' + this._canvas.items[i].getTitle();
+      name = (i+1) + '. ' + this._canvas.items[i].getTitle();
       let listItem = "<div class='radiobox-div' attr-index="+i+"><label class='radiobox'><input type='radio' name='selectedIdEneble'><span class='item'>"+name+"</span></label></div>"
       figuresList.append(listItem);
     }
+    if (this._currentFigure != null)
+      $('.radiobox-div[attr-index=' + this._currentFigure + '] .radiobox input').prop("checked", true)
   }
 
   get ctx(){ return this._ctx; }
