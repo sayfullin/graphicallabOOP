@@ -135,6 +135,16 @@ class Interface{
         that._currentFigure = null;
       });
       domElements.deleteFigure.on('click', function(){
+        if (that._currentFigure != null){
+          that._canvas.deleteItem(that._currentFigure);
+          that._canvas.draw();
+          if (that._canvas.items.length == 0){
+            that._currentFigure = null;
+          }else if (that._currentFigure == that._canvas.items.length){
+            that._currentFigure = that._canvas.items.length-1;
+          }
+          that.refreshFiguresList(domElements.figuresList);
+        }
         that._currentOperation = EDIT;
       });
       domElements.polygon.on('click', function(){
