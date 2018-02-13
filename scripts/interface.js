@@ -121,6 +121,7 @@ class Interface{
               break;
             case EDIT:
               that._setCurrentFigure(that._canvas.getFigureIndexByCoord(xPos, yPos));
+              break;
             case MOVE:
               that._currentOperation = EDIT;
           }
@@ -149,13 +150,13 @@ class Interface{
       })
       domElements.figuresList.on('change', '.radiobox-div', function(event){
         that._setCurrentFigure(Number.parseInt(this.getAttribute('attr-index')));
-        that._currentOperation = EDIT;
+        that._setCurrentOperation(EDIT);
         that.selectFigure();
         that._canvas.draw();
       })
 
       domElements.edit.on('click', function(){
-        that._currentOperation = EDIT;
+        that._setCurrentOperation(EDIT);
         if (that._canvas.items.length > 0)
           that._setCurrentFigure(that._canvas.items.length-1);
         else
@@ -174,22 +175,22 @@ class Interface{
           that._canvas.draw();
           that.refreshFiguresList();
         }
-        that._currentOperation = EDIT;
+        that._setCurrentOperation(EDIT);
       });
       domElements.polygon.on('click', function(){
-        that._currentOperation = ADD_POLYGON;
+        that._setCurrentOperation(ADD_POLYGON);
         that._setCurrentFigure(null);
         that._domElements.spikeCount.hide();
         that._domElements.sideCount.show();
       });
       domElements.star.on('click', function(){
-        that._currentOperation = ADD_STAR;
+        that._setCurrentOperation(ADD_STAR);
         that._setCurrentFigure(null);
         that._domElements.spikeCount.show();
         that._domElements.sideCount.hide();
       });
       domElements.circle.on('click', function(){
-        that._currentOperation = ADD_CIRCLE;
+        that._setCurrentOperation(ADD_CIRCLE);
         that._setCurrentFigure(null);
         that._domElements.spikeCount.hide();
         that._domElements.sideCount.hide();
@@ -221,6 +222,30 @@ class Interface{
         this._getCurrentFigure().setshadow(false);
       }
     this._currentFigure = select;
+    }
+  }
+
+  _setCurrentOperation(select){
+    if (this._currentOperation != select) {
+      this._domElements.polygon.removeClass("select_toolbar");
+      this._domElements.star.removeClass("select_toolbar");
+      this._domElements.circle.removeClass("select_toolbar");
+      this._domElements.edit.removeClass("select_toolbar");
+      switch (select) {
+        case ADD_POLYGON:
+          this._domElements.polygon.addClass("select_toolbar");
+        break;
+        case ADD_STAR:
+          this._domElements.star.addClass("select_toolbar");
+        break;
+        case ADD_CIRCLE:
+          this._domElements.circle.addClass("select_toolbar");
+        break;
+        case EDIT:
+          this._domElements.edit.addClass("select_toolbar");
+        break;
+      }
+      this._currentOperation = select;
     }
   }
 

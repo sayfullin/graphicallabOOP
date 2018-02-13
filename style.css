@@ -22,6 +22,11 @@ html, body { width:100%; height:100%; }
   display: flex;
   flex-direction: column;
 }
+
+.select_toolbar{
+  background-color: gray;
+}
+
 #canvas_div{
   overflow: hidden;
   background-color: #DDD;
