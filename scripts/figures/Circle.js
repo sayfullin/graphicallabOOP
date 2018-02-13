@@ -1,6 +1,6 @@
 class Circle extends Figure{
-  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor){
-    super(ctx, x, y, width, height, angle, borderWidth, color, borderColor);
+  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, shadow){
+    super(ctx, x, y, width, height, angle, borderWidth, color, borderColor, shadow);
   }
 
   _getFigureName(){
@@ -11,6 +11,10 @@ class Circle extends Figure{
     if (!ctx) ctx = this.ctx;
     ctx.translate(this.x, this.y);
     ctx.rotate((Math.PI / 180) * this.angle);
+    if (this.shadow) {
+      ctx.shadowColor = 'gray';
+      ctx.shadowBlur = 10;
+    }
     ctx.beginPath();
     ctx.ellipse(0, 0, this.width, this.height, 0, 0, 2 * Math.PI);
     ctx.closePath();
@@ -25,5 +29,8 @@ class Circle extends Figure{
     }
     ctx.rotate(-(Math.PI / 180) * this.angle);
     ctx.translate(-this.x, -this.y);
+    if (this.shadow) {
+      ctx.shadowBlur = 0;
+    }
   }
 }

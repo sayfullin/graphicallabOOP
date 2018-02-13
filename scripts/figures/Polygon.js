@@ -1,6 +1,6 @@
 class Polygon extends Figure{
-  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, sideCount){
-    super(ctx, x, y, width, height, angle, borderWidth, color, borderColor);
+  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, sideCount, shadow){
+    super(ctx, x, y, width, height, angle, borderWidth, color, borderColor, shadow);
     if (!Number.isInteger(sideCount)) throw new Error(`The sideCount must be integer.`);
     this._sideCount = sideCount;
   }
@@ -13,6 +13,10 @@ class Polygon extends Figure{
     if (!ctx) ctx = this.ctx;
     ctx.translate(this.x, this.y);
     ctx.rotate((Math.PI / 180) * this.angle);
+    if (this.shadow) {
+      ctx.shadowColor = 'gray';
+      ctx.shadowBlur = 10;
+    }
     ctx.beginPath();
     ctx.moveTo(this.width, 0);
     let a = ((Math.PI * 2)/this.sideCount);
@@ -31,8 +35,9 @@ class Polygon extends Figure{
     }
     ctx.rotate(-(Math.PI / 180) * this.angle);
     ctx.translate(-this.x, -this.y);
-
-
+    if (this.shadow) {
+      ctx.shadowBlur = 0;
+    }
   }
 
   changeSideCount(sideCount){

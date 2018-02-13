@@ -120,7 +120,7 @@ class Interface{
               that._canvas.addCircle(xPos, yPos, that._options);
               break;
             case EDIT:
-              that._currentFigure = that._canvas.getFigureIndexByCoord(xPos, yPos);
+              that._setCurrentFigure(that._canvas.getFigureIndexByCoord(xPos, yPos));
           }
           that._canvas.draw();
           that.refreshFiguresList();
@@ -152,27 +152,29 @@ class Interface{
         }
       })
       domElements.figuresList.on('click', '.radiobox-div', function(event){
-        that._currentFigure = Number.parseInt(this.getAttribute('attr-index'));
+        that._setCurrentFigure(Number.parseInt(this.getAttribute('attr-index')));
         that._currentOperation = EDIT;
         that.selectFigure();
+        that._canvas.draw();
       })
 
       domElements.edit.on('click', function(){
         that._currentOperation = EDIT;
         if (that._canvas.items.length > 0)
-          that._currentFigure = that._canvas.items.length-1;
+          that._setCurrentFigure(that._canvas.items.length-1);
         else
-          that._currentFigure = null;
+          that._setCurrentFigure(null);
         that.selectFigure();
+        that._canvas.draw();
       });
       domElements.deleteFigure.on('click', function(){
         if (that._currentFigure != null){
           that._canvas.deleteItem(that._currentFigure);
           that._canvas.draw();
           if (that._canvas.items.length == 0){
-            that._currentFigure = null;
+            that._setCurrentFigure(null);
           }else if (that._currentFigure == that._canvas.items.length){
-            that._currentFigure = that._canvas.items.length-1;
+            that._setCurrentFigure(that._canvas.items.length-1);
           }
           that.refreshFiguresList();
         }
@@ -180,19 +182,19 @@ class Interface{
       });
       domElements.polygon.on('click', function(){
         that._currentOperation = ADD_POLYGON;
-        that._currentFigure = null;
+        that._setCurrentFigure(null);
         that._domElements.spikeCount.hide();
         that._domElements.sideCount.show();
       });
       domElements.star.on('click', function(){
         that._currentOperation = ADD_STAR;
-        that._currentFigure = null;
+        that._setCurrentFigure(null);
         that._domElements.spikeCount.show();
         that._domElements.sideCount.hide();
       });
       domElements.circle.on('click', function(){
         that._currentOperation = ADD_CIRCLE;
-        that._currentFigure = null;
+        that._setCurrentFigure(null);
         that._domElements.spikeCount.hide();
         that._domElements.sideCount.hide();
       });
@@ -205,6 +207,25 @@ class Interface{
       return this._canvas.items[this._currentFigure];
     else
       return null;
+  }
+
+  _getFigure(select){
+    if (select != null)
+      return this._canvas.items[select];
+    else
+      return null;
+  }
+
+  _setCurrentFigure(select){
+    if (this._currentFigure != select) {
+      if (select != null) {
+        this._getFigure(select).setshadow(true);
+      }
+      if (this._getCurrentFigure() != null) {
+        this._getCurrentFigure().setshadow(false);
+      }
+    this._currentFigure = select;
+    }
   }
 
   selectFigure(){

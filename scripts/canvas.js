@@ -8,15 +8,15 @@ class Canvas{
   }
 
   addPolygon(x, y, options){
-    let polygon =  new Polygon(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.sideCount);
+    let polygon =  new Polygon(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.sideCount, false);
     this.addItem(polygon);
   }
   addStar(x, y, options){
-    let polygon =  new Star(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.spikeCount);
+    let polygon =  new Star(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.spikeCount, false);
     this.addItem(polygon);
   }
   addCircle(x, y, options){
-    let polygon =  new Circle(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor);
+    let polygon =  new Circle(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, false);
     this.addItem(polygon);
   }
 

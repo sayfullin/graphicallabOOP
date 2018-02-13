@@ -1,5 +1,5 @@
 class Figure extends Dot{
-  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor){
+  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, shadow){
     super(ctx, x, y, color);
 
     if (!Number.isInteger(width)) throw new Error(`The width must be integer.`);
@@ -13,6 +13,7 @@ class Figure extends Dot{
     this._angle = angle+45;
     this._borderColor = borderColor;
     this._borderWidth = borderWidth;
+    this._shadow = shadow;
   }
 
   draw(ctx){
@@ -57,6 +58,10 @@ class Figure extends Dot{
       this._borderWidth = borderWidth;
   }
 
+  setshadow(shadow){
+    this._shadow = shadow;
+  }
+
   get width(){ return this._width; }
   set width(value) { throw new Error(`The width property cannot be written. ${value} was passed.`); }
   get height(){ return this._height; }
@@ -67,4 +72,6 @@ class Figure extends Dot{
   set borderColor(value) { throw new Error(`The borderColor property cannot be written. ${value} was passed.`); }
   get borderWidth(){ return this._borderWidth; }
   set borderWidth(value) { throw new Error(`The borderWidth property cannot be written. ${value} was passed.`); }
+  get shadow(){ return this._shadow; }
+  set shadow(value) { throw new Error(`The shadow property cannot be written. ${value} was passed.`); }
 }

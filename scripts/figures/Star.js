@@ -20,6 +20,10 @@ class Star extends Figure{
 
     ctx.translate(this.x, this.y);
     ctx.rotate((Math.PI / 180) * this.angle);
+    if (this.shadow) {
+      ctx.shadowColor = 'gray';
+      ctx.shadowBlur = 10;
+    }
     ctx.beginPath();
     ctx.moveTo(0, 0 - outerRadius)
     for (let i = 0; i < this.spikeCount; i++) {
@@ -46,6 +50,9 @@ class Star extends Figure{
     }
     ctx.rotate(-(Math.PI / 180) * this.angle);
     ctx.translate(-this.x, -this.y);
+    if (this.shadow) {
+      ctx.shadowBlur = 0;
+    }
   }
 
   changeSpikeCount(spikeCount){
