@@ -1,6 +1,6 @@
 class Star extends Figure{
-  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, spikeCount){
-    super(ctx, x, y, width, height, angle, borderWidth, color, borderColor);
+  constructor(ctx, x, y, width, height, angle, borderWidth, color, borderColor, spikeCount, shadow){
+    super(ctx, x, y, width, height, angle, borderWidth, color, borderColor, shadow);
     this._spikeCount = spikeCount;
   }
 
@@ -18,7 +18,6 @@ class Star extends Figure{
     let outerRadius = this._width;
     let innerRadius = Math.ceil(this._width * 0.5);
 
-    ctx.strokeSyle = "#000";
     ctx.translate(this.x, this.y);
     ctx.rotate((Math.PI / 180) * this.angle);
     ctx.beginPath();
@@ -36,16 +35,15 @@ class Star extends Figure{
     }
     ctx.lineTo(0, 0 - outerRadius)
     ctx.closePath();
-    if (this.borderWidth != 0){
-      ctx.lineWidth=this.borderWidth;
-      ctx.strokeStyle = this.borderColor;
-    }else {
-      ctx.lineWidth=1;
-      ctx.strokeStyle = this.color;
+    if (this.color != undefined) {
+        ctx.fillStyle = this.color;
+        ctx.fill();
     }
-    ctx.stroke();
-    ctx.fillStyle= this.color;
-    ctx.fill();
+    if (this.borderColor != undefined && this.borderWidth){
+        ctx.lineWidth = this.borderWidth;
+        ctx.strokeStyle = this.borderColor;
+        ctx.stroke();
+    }
     ctx.rotate(-(Math.PI / 180) * this.angle);
     ctx.translate(-this.x, -this.y);
   }
