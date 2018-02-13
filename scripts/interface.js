@@ -172,9 +172,11 @@ class Interface{
           }else if (that._currentFigure == that._canvas.items.length){
             that._setCurrentFigure(that._canvas.items.length-1);
           }
-          that._canvas.draw();
-          that.refreshFiguresList();
+        } else {
+          that._setCurrentFigure(that._canvas.items.length-1);
         }
+        that._canvas.draw();
+        that.refreshFiguresList();
         that._setCurrentOperation(EDIT);
       });
       domElements.polygon.on('click', function(){
