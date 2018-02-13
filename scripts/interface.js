@@ -68,35 +68,35 @@ class Interface{
           that._canvas.draw();
         }
       });
-      domElements.width.on('change', function(){
+      domElements.width.on('input', function(){
         that._options.width = Number.parseInt($(this).val());
         if (that._currentOperation == EDIT && that._currentFigure != null){
-          that._getCurrentFigure().resize(that._options.width, that._options.width);
+          that._getCurrentFigure().resize(that._options.width, that._options.height);
           that._canvas.draw();
         }
       });
-      domElements.height.on('change', function(){
+      domElements.height.on('input', function(){
         that._options.height = Number.parseInt($(this).val());
         if (that._currentOperation == EDIT && that._currentFigure != null){
-          that._getCurrentFigure().resize(that._options.width, that._options.width);
+          that._getCurrentFigure().resize(that._options.width, that._options.height);
           that._canvas.draw();
         }
       });
-      domElements.angle.on('change', function(){
+      domElements.angle.on('input', function(){
         that._options.angle = Number.parseInt($(this).val());
         if (that._currentOperation == EDIT && that._currentFigure != null){
           that._getCurrentFigure().rotate(that._options.angle);
           that._canvas.draw();
         }
       });
-      domElements.sideCount.on('change', function(){
+      domElements.sideCount.on('input', function(){
         that._options.sideCount = Number.parseInt($(this).val());
         if (that._currentOperation == EDIT && (that._getCurrentFigure() instanceof Polygon)){
           that._getCurrentFigure().changeSideCount(that._options.sideCount);
           that._canvas.draw();
         }
       });
-      domElements.spikeCount.on('change', function(){
+      domElements.spikeCount.on('input', function(){
         that._options.spikeCount = Number.parseInt($(this).val());
         if (that._currentOperation == EDIT && (that._getCurrentFigure() instanceof Star)){
           that._getCurrentFigure().changeSpikeCount(that._options.spikeCount);
