@@ -121,6 +121,8 @@ class Interface{
               break;
             case EDIT:
               that._setCurrentFigure(that._canvas.getFigureIndexByCoord(xPos, yPos));
+            case MOVE:
+              that._currentOperation = EDIT;
           }
           that._canvas.draw();
           that.refreshFiguresList();
@@ -145,13 +147,7 @@ class Interface{
             that._canvas.draw();
         }
       })
-      domElements.canvas.on('mouseup', function(event){
-        switch (that._currentOperation) {
-          case MOVE:
-            that._currentOperation = EDIT;
-        }
-      })
-      domElements.figuresList.on('click', '.radiobox-div', function(event){
+      domElements.figuresList.on('change', '.radiobox-div', function(event){
         that._setCurrentFigure(Number.parseInt(this.getAttribute('attr-index')));
         that._currentOperation = EDIT;
         that.selectFigure();
