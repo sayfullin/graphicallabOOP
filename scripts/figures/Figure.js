@@ -40,6 +40,14 @@ class Figure extends Dot{
     this._height = height;
   }
 
+  move(x,y){
+    if (!Number.isInteger(x)) throw new Error(`The x must be integer.`);
+    if (!Number.isInteger(y)) throw new Error(`The y must be integer.`);
+
+    this._x = x;
+    this._y = y;
+  }
+
   changeBorderColor(borderColor){
     this._borderColor = borderColor;
   }

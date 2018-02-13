@@ -3,6 +3,7 @@ const DELETE_FIGURE = 11;
 const ADD_STAR = 21;
 const ADD_POLYGON = 22;
 const ADD_CIRCLE = 23;
+const MOVE = 24;
 
 class Interface{
   constructor(ctx, pointPathCanvasCtx, domElements){
@@ -124,7 +125,32 @@ class Interface{
           that._canvas.draw();
           that.refreshFiguresList();
       })
-
+      domElements.canvas.on('mousedown', function(event){
+        switch (that._currentOperation) {
+          case EDIT:
+            let xPos = Math.ceil(event.pageX - $(this).offset().left);
+            let yPos = Math.ceil(event.pageY - $(this).offset().top);
+            let mfigure = that._canvas.getFigureIndexByCoord(xPos, yPos);
+            if (that._currentFigure != null && that._currentFigure == mfigure) {
+              that._currentOperation = MOVE;
+            }
+        }
+      })
+      domElements.canvas.on('mousemove', function(event){
+        switch (that._currentOperation) {
+          case MOVE:
+            let xPos = Math.ceil(event.pageX - $(this).offset().left);
+            let yPos = Math.ceil(event.pageY - $(this).offset().top);
+            that._getCurrentFigure().move(xPos, yPos);
+            that._canvas.draw();
+        }
+      })
+      domElements.canvas.on('mouseup', function(event){
+        switch (that._currentOperation) {
+          case MOVE:
+            that._currentOperation = EDIT;
+        }
+      })
       domElements.figuresList.on('click', '.radiobox-div', function(event){
         that._currentFigure = Number.parseInt(this.getAttribute('attr-index'));
         that._currentOperation = EDIT;
