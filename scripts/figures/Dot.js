@@ -10,7 +10,7 @@ class Dot{
     this._y = y;
     this._color = color;
   }
-
+  
   draw(ctx){
     if (!ctx) ctx = this.ctx;
     ctx.fillRect(this.x,this.y,1,1);
@@ -19,6 +19,16 @@ class Dot{
   getTitle(){
     return this._getFigureName() + " "+ this._getPosition()
   }
+
+  toJson(){
+    return {
+      'type': 'Doc',
+      'x': this.x,
+      'y': this.y,
+      'color': this.color
+    }
+  }
+
   _getFigureName(){
     return "Точка"
   }
@@ -33,8 +43,8 @@ class Dot{
   }
 
   changeColor(color){
-  if (!color) throw new Error(`The color must implement.`);
-    this._color = color;
+    if (!color) throw new Error(`The color must implement.`);
+      this._color = color;
   }
 
   get x(){ return this._x; }

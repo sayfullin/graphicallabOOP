@@ -8,6 +8,7 @@
     <script src='https://bootswatch.com/_vendor/jquery/dist/jquery.min.js'></script>
     <script src='https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js'></script>
     <script src='https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script src='libs/FileSaver.min.js'></script>
 
     <script src="libs/color_picker/jquery.simplecolorpicker.js"></script>
     <link rel="stylesheet" href="libs/color_picker/jquery.simplecolorpicker.css">
@@ -21,8 +22,9 @@
           <div>
             <h4>Инструменты</h4>
             <div id='new_element_choose'>
-              <div class="tool_choose-item"><span>Сохранить</span></div>
-              <div class="tool_choose-item"><span>Загрузить</span></div>
+              <div class="tool_choose-item" id='save'><span>Сохранить</span></div>
+              <div class="tool_choose-item" id='load'><label for='load_input'><span>Загрузить</span></label><input type="file" id='load_input' style="display:none;" ></div>
+              <div class="tool_choose-item" id='export'><span>Экспорт</span></div>
               <div class="tool_choose-item" id='edit'><span>Редактирование</span></div>
               <div class="tool_choose-item" id='polygon'><span>Многоугольник</span></div>
               <div class="tool_choose-item" id='star'><span>Звезда</span></div>

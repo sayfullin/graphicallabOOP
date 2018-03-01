@@ -40,6 +40,15 @@ class Polygon extends Figure{
     }
   }
 
+  toJson(){
+    let json = super.toJson();
+    Object.assign(json, {
+      'type': 'Polygon',
+      'sideCount': this.sideCount
+    });
+    return json;
+  }
+
   changeSideCount(sideCount){
     if (!Number.isInteger(sideCount)) throw new Error(`The sideCount must be integer.`);
     this._sideCount = sideCount;

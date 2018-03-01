@@ -55,6 +55,15 @@ class Star extends Figure{
     }
   }
 
+  toJson(){
+    let json = super.toJson();
+    Object.assign(json, {
+      'type': 'Star',
+      'spikeCount': this.spikeCount
+    });
+    return json;
+  }
+
   changeSpikeCount(spikeCount){
     if (!Number.isInteger(spikeCount)) throw new Error(`The sideCount must be integer.`);
     this._spikeCount = spikeCount;

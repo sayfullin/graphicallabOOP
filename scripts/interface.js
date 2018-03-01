@@ -34,6 +34,9 @@ class Interface{
       if (!domElements.circle) throw new Error(`The domElements.circle must implement.`);
       if (!domElements.edit) throw new Error(`The domElements.edit must implement.`);
       if (!domElements.deleteFigure) throw new Error(`The domElements.delete_figure must implement.`);
+      if (!domElements.save) throw new Error(`The domElements.save must implement.`);
+      if (!domElements.load) throw new Error(`The domElements.load must implement.`);
+      if (!domElements.export) throw new Error(`The domElements.export must implement.`);
 
       this._domElements = domElements;
 
@@ -198,7 +201,47 @@ class Interface{
         that._domElements.sideCount.hide();
       });
 
+      domElements.save.on('click', function(){
+        let jsonArr = [];
+        for (var i = 0; i < that._canvas.items.length; i++) {
+          jsonArr.push(that._canvas.items[i].toJson());
+        }
+        var blob = new Blob([JSON.stringify(jsonArr)], {type: "text/plain;charset=utf-8"})
+        saveAs(blob, "vecotoriass.txt");
+      });
 
+      domElements.export.on('click', function(){
+        that._ctx.canvas.toBlob(function(blob) {
+          saveAs(blob, "pretty image.png");
+        })
+      });
+      domElements.load.on('change', function(e){
+        let file = e.target.files[0];
+        if (!file) {
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          let  contents = e.target.result;
+          let figures = JSON.parse(contents);
+          for(let i=0;i<figures.length;i++){
+            switch (figures[i].type) {
+              case "Polygon":
+                that._canvas.addItem(new Polygon(that.ctx, figures[i].x, figures[i].y, figures[i].width, figures[i].width, figures[i].angle, figures[i].borderWidth, figures[i].color, figures[i].borderColor, figures[i].sideCount, false))
+                break;
+              case "Star":
+                that._canvas.addItem(new Star(that.ctx, figures[i].x, figures[i].y, figures[i].width, figures[i].width, figures[i].angle, figures[i].borderWidth, figures[i].color, figures[i].borderColor, figures[i].spikeCount, false))
+                break;
+              case "Circle":
+                that._canvas.addItem(new Circle(that.ctx, figures[i].x, figures[i].y, figures[i].width, figures[i].width, figures[i].angle, figures[i].borderWidth, figures[i].color, figures[i].borderColor, false))
+                break;
+            }
+          }
+          that._canvas.draw();
+          that.refreshFiguresList();
+        };
+        reader.readAsText(file);
+      })
   }
 
   _getCurrentFigure(){

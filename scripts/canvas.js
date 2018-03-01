@@ -12,12 +12,12 @@ class Canvas{
     this.addItem(polygon);
   }
   addStar(x, y, options){
-    let polygon =  new Star(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.spikeCount, false);
-    this.addItem(polygon);
+    let star =  new Star(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, options.spikeCount, false);
+    this.addItem(star);
   }
   addCircle(x, y, options){
-    let polygon =  new Circle(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, false);
-    this.addItem(polygon);
+    let circle =  new Circle(this.ctx, x, y, options.width, options.width, options.angle, options.borderWidth, options.color, options.borderColor, false);
+    this.addItem(circle);
   }
 
   addItem(figure){

@@ -33,4 +33,14 @@ class Circle extends Figure{
       ctx.shadowBlur = 0;
     }
   }
+
+  toJson(){
+    let json = super.toJson();
+    Object.assign(json, {
+      'type': 'Circle'
+    });
+    return json;
+  }
+
+
 }

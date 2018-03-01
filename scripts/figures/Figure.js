@@ -21,6 +21,19 @@ class Figure extends Dot{
     throw new Error('You have to implement the method draw!');
   }
 
+  toJson(){
+    let json = super.toJson();
+    Object.assign(json, {
+      'type': 'Figure',
+      'width': this.width,
+      'height': this.height,
+      'angle': this.angle,
+      'borderColor': this.borderColor,
+      'borderWidth': this.borderWidth
+    });
+    return json;
+  }
+
   _getFigureName(){
     return "Фигура"
   }

@@ -1,4 +1,5 @@
 $( document ).ready(function(){
+
   $('select[name="colorpicker_color"]').simplecolorpicker({ picker: true });
   $('select[name="colorpicker_color"]').simplecolorpicker('selectColor', '#7bd148');
   $('select[name="colorpicker_bordercolor"]').simplecolorpicker({ picker: true });
@@ -30,7 +31,10 @@ $( document ).ready(function(){
     'circle': $('#circle'),
     'edit': $('#edit'),
     'deleteFigure': $('#delete_figure'),
-    'figuresList': $('#figures_list')
+    'figuresList': $('#figures_list'),
+    'export': $('#export'),
+    'save': $('#save'),
+    'load': $('#load'),
   });
 
 
