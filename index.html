@@ -18,25 +18,35 @@
   <body>
     <div id='container'>
         <div id='left_toolbar' class='toolbar'>
-          <div><h2>Vectorius Canvas</h2></div>
-          <div>
-            <h4>Инструменты</h4>
+          <div id='command_select'>
             <div id='new_element_choose'>
-              <div class="tool_choose-item" id='save'><span>Сохранить</span></div>
-              <div class="tool_choose-item" id='load'><label for='load_input'><span>Загрузить</span></label><input type="file" id='load_input' style="display:none;" ></div>
-              <div class="tool_choose-item" id='export'><span>Экспорт</span></div>
-              <div class="tool_choose-item" id='edit'><span>Редактирование</span></div>
-              <div class="tool_choose-item" id='polygon'><span>Многоугольник</span></div>
-              <div class="tool_choose-item" id='star'><span>Звезда</span></div>
-              <div class="tool_choose-item" id='circle'><span>Круг</span></div>
-              <div class="tool_choose-item" id='delete_figure'><span>Удалить фигуру</span></div>
+              <div class="tool_choose-item" id='save'><span>
+                  <img src="libs/svg/cloud-download.svg" width="20" height="20" title='Сохранить'>
+              </span></div>
+              <div class="tool_choose-item" id='load'><label for='load_input'><span>
+                <img src="libs/svg/cloud-upload.svg" width="20" height="20" title='Загрузить'>
+              </span></label><input type="file" id='load_input' style="display:none;" ></div>
+              <div class="tool_choose-item" id='export'><span>
+                  <img src="libs/svg/image.svg" width="20" height="20" title='Экспорт'>
+              </span></div>
+              <div class="tool_choose-item" id='edit'><span>
+                  <img src="libs/svg/pencil.svg" width="20" height="20" title='Редактирование'>
+              </span></div>
+              <div class="tool_choose-item" id='polygon'><span>
+                  <img src="libs/svg/media-stop.svg" width="20" height="20" title='Многоугольник'>
+              </span></div>
+              <div class="tool_choose-item" id='star'><span>
+                  <img src="libs/svg/star.svg" width="20" height="20" title='Звезда'>
+              </span></div>
+              <div class="tool_choose-item" id='circle'><span>
+                  <img src="libs/svg/circle.svg" width="20" height="20" title='Круг'>
+                </span></div>
+              <div class="tool_choose-item" id='delete_figure'><span>
+                    <img src="libs/svg/x.svg" width="20" height="20" title='Удалить фигуру'>
+              </span></div>
             </div>
           </div>
-
-        </div>
-        <div id='right_toolbar' class='toolbar'>
           <div>
-            <h4>Свойства</h4>
             <div >
               <div class="figure_attribute">
                 <span>Цвет</span>
@@ -115,7 +125,6 @@
             </div>
           </div>
           <div id="objects_list" class="">
-            <h4>Фигуры</h4>
             <div id='figures_list'>
             </div>
           </div>

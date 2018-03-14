@@ -9,13 +9,23 @@ html, body { width:100%; height:100%; }
   height: 100%;
 }
 
+#top_toolbar{
+  height: 20px;
+
+}
+#command_select .tool_choose-item{
+  display: inline-block;
+  width: 24px;
+}
+
 #left_toolbar, #right_toolbar{
   width: 250px;
-  background-color: #DDD;
+  background-color: #FFF;
   vertical-align: top;
 }
 #left_toolbar{
   float: left;
+  border-right: 1px dashed #000;
 }
 #right_toolbar{
   float: right;
@@ -23,16 +33,12 @@ html, body { width:100%; height:100%; }
   flex-direction: column;
 }
 
-.select_toolbar{
-  background-color: gray;
-}
-
 #canvas_div{
   overflow: hidden;
-  background-color: #DDD;
+  background-color: #FFF;
 }
 canvas {
-  background-color: #EDEDED;
+  background-color: #FFF;
   display: block;
 }
 
@@ -61,15 +67,11 @@ canvas {
 }
 
 h4, h5{
-  font-family: 'Neucha', cursive;
+  font-family: Arial;
 }
 
 #objects_list{
 	overflow-y: auto;
-}
-
-.radiobox-div:hover{
-	background: rgb(189, 189, 189);
 }
 
 .radiobox{
@@ -86,12 +88,12 @@ h4, h5{
   display:block;
   line-height: 40px;
   letter-spacing: 1px;
+  color: #333;
 }
 
 
 .radiobox input:checked + .item {
-  background-color:rgb(140, 140, 140);
-  color:#F7F7F7;
+  color: #000;
 }
 .radiobox input {
   display: none;
@@ -120,13 +122,6 @@ h4, h5{
 
 /* Ползунки */
 input[type=range] {
-    /*removes default webkit styles*/
-    -webkit-appearance: none;
-
-    /*fix for FF unable to apply focus style bug */
-    border: 1px solid #555;
-
-    /*required for proper track sizing in FF*/
     width: 70px;
 }
 input[type=range]::-webkit-slider-runnable-track {

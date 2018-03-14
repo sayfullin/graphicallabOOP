@@ -38,6 +38,7 @@ class Figure extends Dot{
     return "Фигура"
   }
   _getPosition(){
+    return '';
     return "("+this.x+","+this.y+"; "+(this.x+this.width)+","+(this.y+this.height)+")"
   }
 

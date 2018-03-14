@@ -1,9 +1,9 @@
 $( document ).ready(function(){
 
   $('select[name="colorpicker_color"]').simplecolorpicker({ picker: true });
-  $('select[name="colorpicker_color"]').simplecolorpicker('selectColor', '#7bd148');
+  $('select[name="colorpicker_color"]').simplecolorpicker('selectColor', '#fbd75b');
   $('select[name="colorpicker_bordercolor"]').simplecolorpicker({ picker: true });
-  $('select[name="colorpicker_bordercolor"]').simplecolorpicker('selectColor', '#ffb878');
+  $('select[name="colorpicker_bordercolor"]').simplecolorpicker('selectColor', '#e1e1e1');
 
 
   let canvas = document.getElementById('canvas');
