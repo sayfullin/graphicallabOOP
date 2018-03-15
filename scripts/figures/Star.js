@@ -5,7 +5,34 @@ class Star extends Figure{
   }
 
   _getFigureName(){
-    return "Звезда " + this.spikeCount;
+    switch (this.spikeCount) {
+      case 3:
+        return 'Трёхлучевая звезда';
+        break;
+      case 4:
+        return 'Чётырёхлучевая звезда';
+        break;
+      case 5:
+        return 'Пятилучевая звезда';
+        break;
+      case 6:
+        return 'Шестилучевая звезда';
+        break;
+      case 7:
+        return 'Семилучевая звезда';
+        break;
+      case 8:
+        return 'Восьмилучевая звезда';
+        break;
+      case 9:
+        return 'Девятилучевая звезда';
+        break;
+      case 10:
+        return 'Десятилучевая звезда';
+        break;
+      default:
+        return "Звезда";
+    }
   }
 
 

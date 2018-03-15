@@ -1,11 +1,4 @@
 $( document ).ready(function(){
-
-  $('select[name="colorpicker_color"]').simplecolorpicker({ picker: true });
-  $('select[name="colorpicker_color"]').simplecolorpicker('selectColor', '#fbd75b');
-  $('select[name="colorpicker_bordercolor"]').simplecolorpicker({ picker: true });
-  $('select[name="colorpicker_bordercolor"]').simplecolorpicker('selectColor', '#e1e1e1');
-
-
   let canvas = document.getElementById('canvas');
   let ctx =  canvas.getContext('2d');
   canvas.width = canvas.parentElement.clientWidth - 10;
@@ -18,8 +11,8 @@ $( document ).ready(function(){
 
   interfac = new Interface(ctx, pointPathCanvasCtx, {
     'canvas': $('#canvas'),
-    'color': $('select[name="colorpicker_color"]'),
-    'borderColor': $('select[name="colorpicker_bordercolor"]'),
+    'color': $('#colorpicker_color'),
+    'borderColor': $('#colorpicker_bordercolor'),
     'borderWidth':$('#borderWidth'),
     'width': $('#width'),
     'height': $('#height'),
@@ -36,16 +29,4 @@ $( document ).ready(function(){
     'save': $('#save'),
     'load': $('#load'),
   });
-
-
-
 });
-
-
-/*
-  poligon = new Polygon(ctx, 120, 180, 50, 50, 0, 2, 'grey', 'black', 4);
-  poligon.draw();
-
-  poligon = new Star(ctx, 180, 120, 50, 50, 0, 2, 'green', 'black', 5);
-  poligon.draw();
-*/

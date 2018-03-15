@@ -302,8 +302,8 @@ class Interface{
       this._domElements.height.val(figure.height);
       this._domElements.angle.val(figure.angle);
       this._domElements.borderWidth.val(figure.borderWidth);
-      this._domElements.color.simplecolorpicker('selectColor',figure.color);
-      this._domElements.borderColor.simplecolorpicker('selectColor',figure.borderColor);
+      this._domElements.color.val(figure.color);
+      this._domElements.borderColor.val(figure.borderColor);
       if (figure instanceof Star){
         this._domElements.spikeCount.val(figure.spikeCount);
         this._domElements.spikeCount.show();

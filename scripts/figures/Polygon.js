@@ -6,7 +6,34 @@ class Polygon extends Figure{
   }
 
   _getFigureName(){
-    return "Многоугольник " + this.sideCount;
+    switch (this.sideCount) {
+      case 3:
+        return 'Треугольник';
+        break;
+      case 4:
+        return 'Чётырёхугольник';
+        break;
+      case 5:
+        return 'Пятиугольник';
+        break;
+      case 6:
+        return 'Шестиугольник';
+        break;
+      case 7:
+        return 'Семиугольник';
+        break;
+      case 8:
+        return 'Восьмиугольник';
+        break;
+      case 9:
+        return 'Девятиугольник';
+        break;
+      case 10:
+        return 'Десятиугольник';
+        break;
+      default:
+        return "Многоугольник";
+    }
   }
 
   draw(ctx){

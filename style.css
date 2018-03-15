@@ -1,5 +1,9 @@
 html, body { width:100%; height:100%; }
 
+.figure_attribute, #figures_list{
+  font-family: monospace;
+}
+
 #container {
   height: 100%;
   width: 100%;
@@ -26,6 +30,7 @@ html, body { width:100%; height:100%; }
 #left_toolbar{
   float: left;
   border-right: 1px dashed #000;
+  overflow-y: scroll;
 }
 #right_toolbar{
   float: right;
@@ -83,10 +88,10 @@ h4, h5{
 }
 
 .radiobox .item {
-  font-size: 14px;
-  padding:0 5px;
-  display:block;
-  line-height: 40px;
+  font-size: 12px;
+  padding: 0px 10px;
+  display: block;
+  line-height: 25px;
   letter-spacing: 1px;
   color: #333;
 }
