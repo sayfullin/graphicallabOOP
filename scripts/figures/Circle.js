@@ -4,7 +4,7 @@ class Circle extends Figure{
   }
 
   _getFigureName(){
-    return "Круг"
+    return "Circle"
   }
 
   draw(ctx){

@@ -6,7 +6,7 @@ class Polygon extends Figure{
   }
 
   _getFigureName(){
-    return "Многоугольник " + this.sideCount;
+    return "Polygon " + this.sideCount;
   }
 
   draw(ctx){

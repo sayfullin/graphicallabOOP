@@ -22,7 +22,7 @@ class Dot{
 
   toJson(){
     return {
-      'type': 'Doc',
+      'type': 'Dot',
       'x': this.x,
       'y': this.y,
       'color': this.color
@@ -30,7 +30,7 @@ class Dot{
   }
 
   _getFigureName(){
-    return "Точка"
+    return "Dot"
   }
   _getPosition(){
     return "("+this.x+","+this.y+")"

@@ -5,7 +5,7 @@ class Star extends Figure{
   }
 
   _getFigureName(){
-    return "Звезда " + this.spikeCount;
+    return "Star " + this.spikeCount;
   }
 
 

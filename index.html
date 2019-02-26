@@ -20,26 +20,26 @@
         <div id='left_toolbar' class='toolbar'>
           <div><h2>Vectorius Canvas</h2></div>
           <div>
-            <h4>Инструменты</h4>
+            <h4>Tools</h4>
             <div id='new_element_choose'>
-              <div class="tool_choose-item" id='save'><span>Сохранить</span></div>
-              <div class="tool_choose-item" id='load'><label for='load_input'><span>Загрузить</span></label><input type="file" id='load_input' style="display:none;" ></div>
-              <div class="tool_choose-item" id='export'><span>Экспорт</span></div>
-              <div class="tool_choose-item" id='edit'><span>Редактирование</span></div>
-              <div class="tool_choose-item" id='polygon'><span>Многоугольник</span></div>
-              <div class="tool_choose-item" id='star'><span>Звезда</span></div>
-              <div class="tool_choose-item" id='circle'><span>Круг</span></div>
-              <div class="tool_choose-item" id='delete_figure'><span>Удалить фигуру</span></div>
+              <div class="tool_choose-item" id='save'><span>Save</span></div>
+              <div class="tool_choose-item" id='load'><label for='load_input'><span>Upload</span></label><input type="file" id='load_input' style="display:none;" ></div>
+              <div class="tool_choose-item" id='export'><span>Export</span></div>
+              <div class="tool_choose-item" id='edit'><span>Edit</span></div>
+              <div class="tool_choose-item" id='polygon'><span>Polygon</span></div>
+              <div class="tool_choose-item" id='star'><span>Star</span></div>
+              <div class="tool_choose-item" id='circle'><span>Circle</span></div>
+              <div class="tool_choose-item" id='delete_figure'><span>Delete figure</span></div>
             </div>
           </div>
 
         </div>
         <div id='right_toolbar' class='toolbar'>
           <div>
-            <h4>Свойства</h4>
+            <h4>Properties</h4>
             <div >
               <div class="figure_attribute">
-                <span>Цвет</span>
+                <span>Color</span>
                 <div class="figure_attribute-value colorpicker_div">
                   <select name="colorpicker_color">
                     <option value="#7bd148">Green</option>
@@ -58,7 +58,7 @@
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Цвет границ</span>
+                <span>Border color</span>
                 <div class="figure_attribute-value colorpicker_div">
                   <select name="colorpicker_bordercolor">
                     <option value="#7bd148">Green</option>
@@ -77,37 +77,37 @@
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Ширина границ</span>
+                <span>Border width</span>
                 <div class="figure_attribute-value range_div">
                   <input id='borderWidth' type="range" value="2" min="0" max="5" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Ширина</span>
+                <span>Width</span>
                 <div class="figure_attribute-value range_div">
                   <input id='width' type="range" value="50" min="5" max="200" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Высота</span>
+                <span>Height</span>
                 <div class="figure_attribute-value range_div">
                   <input id='height' type="range" value="50" min="5" max="200" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Угол наклона</span>
+                <span>Angle</span>
                 <div class="figure_attribute-value range_div">
                   <input id='angle' type="range" value="0" min="0" max="359" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Количество сторон</span>
+                <span>Sides number</span>
                 <div class="figure_attribute-value range_div">
                   <input id='sideCount' type="range" value="5" min="3" max="10" step="1">
                 </div>
               </div>
               <div class="figure_attribute">
-                <span>Количество концов</span>
+                <span>Spike number</span>
                 <div class="figure_attribute-value range_div">
                   <input id='spikeCount' type="range" value="5" min="3" max="10" step="1">
                 </div>
@@ -115,7 +115,7 @@
             </div>
           </div>
           <div id="objects_list" class="">
-            <h4>Фигуры</h4>
+            <h4>Figures</h4>
             <div id='figures_list'>
             </div>
           </div>
